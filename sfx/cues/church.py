@@ -82,16 +82,17 @@ def score(mix, tl):
             step = 0.5 if (dense or b >= book) else 1.0
             put(b + q * step, pluck(notes[ARP[q % 8]], dur=0.6, tau=0.25, bright=2200), 0.08, -0.3 if q % 2 else 0.3)
 
-    # --- understated beat under the five defenses
-    beat = 60.0 / 96
-    t = beat_in
-    k = 0
-    while t < book - 0.2:
+    # --- understated beat under the five defenses, on the arpeggio's grid (120 BPM from `warm`)
+    # so kick, bass and keys land together: half-time kick, off-beat hats, bass on the 2 and 4
+    beat = 0.5
+    k = math.ceil((beat_in - warm) / beat)
+    while warm + k * beat < book - 0.2:
+        t = warm + k * beat
         if k % 2 == 0:
             put(t, kick(punch=0.5), 0.17)
+        else:
+            put(t, bass(MAJOR[int((t - warm) // bar) % 4][0], dur=beat * 0.8, cutoff=240, env=700), 0.07)
         put(t + beat / 2, hat(tau=0.02), 0.02, 0.25)
-        put(t + beat / 2, bass(MAJOR[int((t - warm) // bar) % 4][0], dur=beat * 0.4, cutoff=240, env=700), 0.06)
-        t += beat
         k += 1
 
     # --- sound effects

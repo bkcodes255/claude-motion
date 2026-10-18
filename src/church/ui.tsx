@@ -123,7 +123,7 @@ export const Captions: React.FC<{t: number}> = ({t}) => {
         position: 'absolute',
         left: 0,
         right: 0,
-        bottom: 54,
+        bottom: 44,
         display: 'flex',
         justifyContent: 'center',
         opacity: k,
@@ -131,16 +131,19 @@ export const Captions: React.FC<{t: number}> = ({t}) => {
     >
       <div
         style={{
-          maxWidth: 1500,
-          padding: '14px 34px',
-          borderRadius: 14,
-          background: 'rgba(5,10,24,0.72)',
+          maxWidth: 1680,
+          padding: '16px 40px',
+          borderRadius: 16,
+          background: 'rgba(3,7,18,0.9)',
+          border: `2px solid rgba(${K.goldGlow},0.55)`,
+          boxShadow: '0 10px 40px rgba(0,0,0,0.5)',
           fontFamily: KF.sans,
-          fontWeight: 500,
-          fontSize: 42,
-          lineHeight: 1.3,
-          color: K.white,
+          fontWeight: 600,
+          fontSize: 52,
+          lineHeight: 1.28,
+          color: '#FFFFFF',
           textAlign: 'center',
+          textShadow: '0 2px 6px rgba(0,0,0,0.8)',
         }}
       >
         {lines[cur]}
