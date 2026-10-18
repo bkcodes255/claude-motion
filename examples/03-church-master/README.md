@@ -28,6 +28,8 @@ npx remotion render ChurchMaster out/church-silent.mp4
 ffmpeg -y -i out/church-silent.mp4 -i public/church.wav -map 0:v -map 1:a -c:v copy -c:a aac -b:a 256k -movflags +faststart -shortest out/church-master.mp4
 ```
 
+Render with nothing else running on the machine. On a 4-core, memory-capped container, a parallel render once left 28 frames half-captured (only the top strip drawn). Scan for isolated bad frames after every full render, re-render any you find with `remotion still`, and overlay them back in matching the master's full-range BT.601 colour.
+
 `public/church/intro.mp4` and `intro-bg.mp4` are the BookLaunch render re-encoded to 30 fps (sharp, and pre-blurred for the background):
 
 ```bash
