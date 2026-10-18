@@ -1,6 +1,7 @@
 import React from 'react';
 import {Composition, Still} from 'remotion';
 import {ArticleCover} from './ArticleCover';
+import {BookFlyer} from './book/BookFlyer';
 import {BookLaunch} from './book/BookLaunch';
 import {ChurchMaster} from './church/ChurchMaster';
 import {CFPS, CH, CTL, CW} from './church/theme';
@@ -34,6 +35,7 @@ export const Root: React.FC = () => (
       width={CW}
       height={CH}
     />
+    <Still id="BookFlyer" component={BookFlyer} width={BW} height={BH} />
     <Still id="ArticleCover" component={ArticleCover} width={2000} height={800} />
   </>
 );

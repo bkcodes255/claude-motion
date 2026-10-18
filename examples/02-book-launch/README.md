@@ -29,6 +29,7 @@ The palette (navy, electric blue, gold) and the condensed display type (Oswald) 
 ```bash
 npm run book:build     # sound + render + mux → out/book-launch.mp4
 npx remotion still BookLaunch out/book-poster.png --frame=1134   # end-card still for feed posts
+cp out/book-poster.png public/book/poster.png && npx remotion still BookFlyer out/book-flyer.png   # same card + Amazon QR
 ```
 
 `public/book/cover.jpg` is the original front-cover file.
