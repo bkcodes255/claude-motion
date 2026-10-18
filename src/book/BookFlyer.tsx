@@ -27,10 +27,10 @@ export const BookFlyer: React.FC = () => {
         </div>
         <div>
           <div style={{fontFamily: BF.display, fontWeight: 700, fontSize: 64, lineHeight: 1.05, color: B.white, textTransform: 'uppercase'}}>
-            Scan to buy
+            Scan to get
           </div>
           <div style={{fontFamily: BF.display, fontWeight: 700, fontSize: 64, lineHeight: 1.05, color: B.gold, textTransform: 'uppercase'}}>
-            on Amazon
+            your copy
           </div>
         </div>
       </div>
