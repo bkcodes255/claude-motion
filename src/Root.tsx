@@ -1,6 +1,8 @@
 import React from 'react';
 import {Composition, Still} from 'remotion';
 import {ArticleCover} from './ArticleCover';
+import {BookLaunch} from './book/BookLaunch';
+import {BFPS, BH, BTL, BW} from './book/theme';
 import {EffortVideo} from './EffortVideo';
 import {FPS, H, TL, W} from './lib';
 
@@ -13,6 +15,14 @@ export const Root: React.FC = () => (
       fps={FPS}
       width={W}
       height={H}
+    />
+    <Composition
+      id="BookLaunch"
+      component={BookLaunch}
+      durationInFrames={Math.round(BTL.duration * BFPS)}
+      fps={BFPS}
+      width={BW}
+      height={BH}
     />
     <Still id="ArticleCover" component={ArticleCover} width={2000} height={800} />
   </>
