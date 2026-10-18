@@ -191,3 +191,101 @@ def pad(duration, chords, volume=None, detune=0.6, tremolo=0.23, xfade=0.35):
             left[i] += sl * v
             right[i] += sr * v
     return left, right
+
+
+def kick(dur=0.45, punch=1.0):
+    """Kick drum: the pulse of a music track, or a single thump on a hit."""
+    n = int(dur * SR)
+    out = []
+    ph = 0.0
+    for k in range(n):
+        tt = k / SR
+        ph += 2 * math.pi * (46 + 110 * math.exp(-tt / 0.03)) / SR
+        s = math.sin(ph) * math.exp(-tt / 0.17)
+        s += random.uniform(-1, 1) * math.exp(-tt / 0.002) * 0.35 * punch
+        out.append(math.tanh(1.8 * s))
+    return out
+
+
+def snare(dur=0.28, tone=190):
+    """Snare / clap: backbeat on 2 and 4, or one hit of a roll."""
+    n = int(dur * SR)
+    noise = bandnoise(n, lambda k: 2600, q=0.55)
+    out = []
+    for k in range(n):
+        tt = k / SR
+        s = math.sin(2 * math.pi * tone * tt) * math.exp(-tt / 0.035) * 0.6
+        s += noise[k] * math.exp(-tt / 0.07) * 2.4
+        out.append(math.tanh(1.4 * s))
+    return out
+
+
+def hat(dur=0.05, tau=0.012):
+    """Hi-hat: 8ths or 16ths that keep a track moving; raise tau for an open hat."""
+    n = int(dur * SR)
+    noise = bandnoise(n, lambda k: 9000, q=0.4)
+    return [noise[k] * math.exp(-k / (tau * SR)) * 2.5 for k in range(n)]
+
+
+def _saw(ph):
+    return 2.0 * (ph - math.floor(ph + 0.5))
+
+
+def bass(freq, dur=0.25, cutoff=500, env=1400, tau=0.08):
+    """Synth bass note: detuned saws through a plucked low-pass; play 8ths for a driving pulse."""
+    n = int(dur * SR)
+    out = []
+    pa = pb = 0.0
+    low = band = 0.0
+    for k in range(n):
+        tt = k / SR
+        pa += (freq * 0.997) / SR
+        pb += (freq * 1.003) / SR
+        x = 0.5 * (_saw(pa) + _saw(pb)) + 0.6 * math.sin(2 * math.pi * freq * tt)
+        fc = cutoff + env * math.exp(-tt / tau)
+        f = 2 * math.sin(math.pi * min(fc, SR / 6) / SR)
+        low += f * band
+        band += f * (x - low - 0.5 * band)
+        amp = min(1.0, tt / 0.003) * min(1.0, (n - k) / (0.01 * SR))
+        out.append(math.tanh(1.5 * low) * amp)
+    return out
+
+
+def pluck(freq, dur=0.45, tau=0.14, bright=3200):
+    """Synth pluck: one note of an arpeggio or melody. Keep freq in key."""
+    n = int(dur * SR)
+    out = []
+    ph = 0.0
+    low = band = 0.0
+    for k in range(n):
+        tt = k / SR
+        ph += freq / SR
+        x = _saw(ph) * 0.6 + (1.0 if (ph % 1.0) < 0.5 else -1.0) * 0.3
+        fc = 400 + bright * math.exp(-tt / (tau * 0.6))
+        f = 2 * math.sin(math.pi * min(fc, SR / 6) / SR)
+        low += f * band
+        band += f * (x - low - 0.6 * band)
+        out.append(low * math.exp(-tt / tau) * min(1.0, tt / 0.002))
+    return out
+
+
+def braaam(freq, dur=2.6):
+    """Cinematic brass hit: a huge low chord that opens on the hero moment. One per video."""
+    n = int(dur * SR)
+    voices = [freq / 2, freq * 0.996, freq * 1.004, freq * 1.498, freq * 2.003]
+    ph = [0.0] * len(voices)
+    out = []
+    low = band = 0.0
+    for k in range(n):
+        tt = k / SR
+        x = 0.0
+        for j, v in enumerate(voices):
+            ph[j] += v / SR
+            x += _saw(ph[j]) / (1 + 0.4 * j)
+        fc = 180 + 1700 * math.exp(-tt / 0.5) * min(1.0, tt / 0.06)
+        f = 2 * math.sin(math.pi * min(fc, SR / 6) / SR)
+        low += f * band
+        band += f * (x - low - 0.4 * band)
+        amp = min(1.0, tt / 0.02) * math.exp(-tt / 1.1)
+        out.append(math.tanh(1.2 * low) * amp)
+    return out
