@@ -20,9 +20,9 @@ Plus a screenshot of the Amazon "Look inside" preview, which supplied the cover,
 | Defence | 4.2–8.7 s | A shield draws on and stamps every alert BLOCKED; *Your identity. Your money. Your family. Your privacy.* |
 | Hero | 8.8–11.3 s | The shield swells to fill the frame and opens onto the cover |
 | System | 11.3–14 s | Cover docks; *The SHIELD System — for personal cybersecurity* |
-| End card | 14.4–19.2 s | *Available now* · Kindle & Paperback on Amazon · by Godfrey Chinomona |
+| End card | 14.4–19.2 s | *Available now* · Kindle & Paperback on Amazon · by Godfrey Chinomona · Acextic logo from 16.3 s |
 
-The palette (navy, electric blue, gold) and the condensed display type (Oswald) come from the cover.
+The palette (navy, electric blue, gold) and the condensed display type (Oswald) come from the cover. The Acextic logo (`public/book/acextic-white.png`, keyed from the colour logo) sits top-right at 60% opacity until the end card takes it over.
 
 ## Build
 

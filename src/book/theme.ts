@@ -29,6 +29,9 @@ export const BF = {
   mono: F.mono,
 };
 
+// Acextic wordmark, white on transparent; keyed from the colour logo.
+export const LOGO = {src: 'book/acextic-white.png', ratio: 1561 / 295};
+
 export const BOOK_FONTS = [
   '700 100px "Oswald"',
   '600 100px "Oswald"',

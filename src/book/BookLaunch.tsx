@@ -4,7 +4,7 @@ import {clamp01, easeIn, easeInOut, easeOut, lerp, prog, sp} from '../lib';
 import {Grain, Mask} from '../components/primitives';
 import {useFonts} from '../components/useFonts';
 import {Alert, BookBackground, Shield} from './parts';
-import {B, BF, BFPS, BOOK_FONTS, BTL, BW} from './theme';
+import {B, BF, BFPS, BOOK_FONTS, BTL, BW, LOGO} from './theme';
 
 const ALERTS = [
   {app: 'Bank alert', icon: '£', time: 'now', msg: 'Unusual sign-in detected. Verify your account now.'},
@@ -79,6 +79,8 @@ export const BookLaunch: React.FC = () => {
   // scene 4 and end card
   const sysOut = prog(t, s4.exit, s4.exit + 0.4, easeIn);
   const pill = spr(s5.pill, {damping: 10, stiffness: 210, mass: 0.7});
+  const brand = prog(t, s5.brand, s5.brand + 0.8, easeOut);
+  const bug = 0.6 * (1 - prog(t, s5.brand - 0.4, s5.brand, easeIn));
 
   return (
     <AbsoluteFill style={{background: B.bg, overflow: 'hidden'}}>
@@ -259,6 +261,26 @@ export const BookLaunch: React.FC = () => {
         }}
       >
         BY GODFREY CHINOMONA
+      </Centered>
+
+      {/* Acextic: a quiet corner mark all the way through, handed to the end card */}
+      <Img
+        src={staticFile(LOGO.src)}
+        style={{position: 'absolute', right: 70, top: 200, height: 36, width: 36 * LOGO.ratio, opacity: bug}}
+      />
+      <Centered top={1446} style={{opacity: brand}}>
+        <div
+          style={{
+            width: 96 * brand,
+            height: 2,
+            margin: '0 auto',
+            borderRadius: 1,
+            background: B.line,
+          }}
+        />
+      </Centered>
+      <Centered top={1478} style={{opacity: brand, transform: `translateY(${(1 - brand) * 20}px)`}}>
+        <Img src={staticFile(LOGO.src)} style={{height: 56, width: 56 * LOGO.ratio, display: 'inline-block'}} />
       </Centered>
 
       <AbsoluteFill style={{background: B.flash, opacity: flash * 0.85, pointerEvents: 'none'}} />
