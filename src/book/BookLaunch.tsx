@@ -15,7 +15,7 @@ const ALERT_TOP = [400, 630, 860];
 
 const ITEMS = ['identity.', 'money.', 'family.', 'privacy.'];
 
-const COVER_RATIO = 834 / 555;
+const COVER_RATIO = 2048 / 1366;
 const COVER_HERO = {cx: BW / 2, cy: 1000, w: 640};
 const COVER_END = {cx: BW / 2, cy: 270 + (470 * COVER_RATIO) / 2, w: 470};
 
@@ -268,18 +268,11 @@ export const BookLaunch: React.FC = () => {
         src={staticFile(LOGO.src)}
         style={{position: 'absolute', right: 70, top: 200, height: 36, width: 36 * LOGO.ratio, opacity: bug}}
       />
-      <Centered top={1446} style={{opacity: brand}}>
-        <div
-          style={{
-            width: 96 * brand,
-            height: 2,
-            margin: '0 auto',
-            borderRadius: 1,
-            background: B.line,
-          }}
-        />
+      <Centered top={1440} style={{opacity: brand}}>
+        <div style={{width: 96 * brand, height: 2, margin: '0 auto 26px', borderRadius: 1, background: B.line}} />
+        <div style={{fontFamily: BF.mono, fontSize: 22, letterSpacing: '0.3em', color: B.muted}}>PRESENTED BY</div>
       </Centered>
-      <Centered top={1478} style={{opacity: brand, transform: `translateY(${(1 - brand) * 20}px)`}}>
+      <Centered top={1504} style={{opacity: brand, transform: `translateY(${(1 - brand) * 20}px)`}}>
         <Img src={staticFile(LOGO.src)} style={{height: 56, width: 56 * LOGO.ratio, display: 'inline-block'}} />
       </Centered>
 

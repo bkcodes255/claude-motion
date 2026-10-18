@@ -177,11 +177,11 @@ export const S15: React.FC<SceneProps> = ({t, frame}) => {
       <Cover cx={330} cy={470} w={400} k={cover} t={t} />
       <div style={{position: 'absolute', left: center - 440, width: 880, top: 120, textAlign: 'center'}}>
         <div style={{...display(40, K.dim), ...rise(L[0], 16)}}>Cybersecurity for Everyday People™</div>
-        <div style={{...display(84, K.gold), marginTop: 6, ...rise(L[0], 16)}}>Defend Your Digital Life</div>
+        <div style={{...display(66, K.gold), marginTop: 6, ...rise(L[0], 16)}}>Defend Your Digital Life</div>
         <div style={{fontFamily: KF.sans, fontSize: 30, color: K.dim, marginTop: 18, ...rise(L[1], 16)}}>
           Protect Yourself. Protect Your Family. Protect Your Future.
         </div>
-        <div style={{...display(112), marginTop: 46, ...rise(L[2], 24)}}>Get your copy today</div>
+        <div style={{...display(88), marginTop: 46, ...rise(L[2], 24)}}>Get your copy today</div>
         <div style={{fontFamily: KF.sans, fontWeight: 600, fontSize: 48, color: K.white, marginTop: 14, ...rise(L[3], 20)}}>
           Available here after the service
         </div>
@@ -213,7 +213,7 @@ export const S15: React.FC<SceneProps> = ({t, frame}) => {
           transform: `scale(${0.85 + 0.15 * qr})`,
         }}
       >
-        <div style={{fontFamily: KF.mono, fontWeight: 600, fontSize: 22, letterSpacing: '0.18em', color: K.gold, marginBottom: 18}}>
+        <div style={{fontFamily: KF.mono, fontWeight: 600, fontSize: 18, letterSpacing: '0.16em', color: K.gold, marginBottom: 18}}>
           ALSO AVAILABLE ON AMAZON
         </div>
         <div style={{background: '#fff', borderRadius: 20, padding: 12}}>
@@ -236,8 +236,8 @@ export const S15: React.FC<SceneProps> = ({t, frame}) => {
       >
         <span style={{fontFamily: KF.sans, fontWeight: 600, fontSize: 34, color: K.white}}>Godfrey Chinomona</span>
         <span style={{width: 2, height: 40, background: K.line}} />
+        <span style={{fontFamily: KF.mono, fontSize: 22, letterSpacing: '0.24em', color: K.muted}}>PRESENTED BY</span>
         <Img src={staticFile(ASSETS.logo)} style={{height: 46, width: 46 * ASSETS.logoRatio}} />
-        <span style={{fontFamily: KF.sans, fontSize: 30, color: K.dim}}>Acextic Corporation</span>
       </div>
     </AbsoluteFill>
   );

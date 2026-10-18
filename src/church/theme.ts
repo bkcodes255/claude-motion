@@ -35,12 +35,11 @@ export const ASSETS = {
   intro: 'church/intro.mp4',
   introBg: 'church/intro-bg.mp4',
   cover: 'book/cover.jpg',
-  coverRatio: 834 / 555,
+  coverRatio: 2048 / 1366,
   logo: 'book/acextic-white.png',
   logoRatio: 1561 / 295,
   qr: 'church/amazon-qr.jpg',
-  // Set to a file in public/ (e.g. 'church/author.jpg') once the real portrait arrives.
-  author: null as string | null,
+  author: 'church/author.jpg' as string | null,
 };
 
 export const CHURCH_FONTS = [

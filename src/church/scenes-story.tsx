@@ -1,5 +1,5 @@
 import React from 'react';
-import {AbsoluteFill, OffthreadVideo, staticFile} from 'remotion';
+import {AbsoluteFill, Img, OffthreadVideo, staticFile} from 'remotion';
 import {clamp01, easeInOut, easeOut, lerp, prog, sp} from '../lib';
 import {Shield} from '../book/parts';
 import {Bubble, CheckIcon, display, Gold, Lines, LockIcon, Person, Phone, rise, WarnIcon} from './ui';
@@ -57,6 +57,19 @@ export const S01: React.FC<SceneProps> = ({t}) => {
         size={66}
         style={{left: 1920 / 2 + clipW / 2 + 70, top: 380}}
       />
+      <div
+        style={{
+          position: 'absolute',
+          left: 1920 / 2 + clipW / 2 + 70,
+          top: 640,
+          ...rise(prog(t, p.presented, p.presented + 1, easeOut), 16),
+        }}
+      >
+        <div style={{fontFamily: KF.mono, fontSize: 20, letterSpacing: '0.3em', color: K.muted, marginBottom: 16}}>
+          PRESENTED BY
+        </div>
+        <Img src={staticFile(ASSETS.logo)} style={{height: 50, width: 50 * ASSETS.logoRatio}} />
+      </div>
     </AbsoluteFill>
   );
 };
@@ -71,7 +84,7 @@ export const S02: React.FC<SceneProps> = ({t, frame}) => {
   const match = prog(t, p.match, p.match + 1.4, easeInOut);
   const unlock = prog(t, p.phoneUnlock, p.phoneUnlock + 0.8, easeInOut);
   const cx = 560;
-  const cy = 470;
+  const cy = 510;
   return (
     <AbsoluteFill>
       <div style={{opacity: (1 - match) * clamp01(doorIn * 1.5), transform: `scale(${lerp(1, 0.86, match)})`}}>
@@ -107,7 +120,7 @@ export const S02: React.FC<SceneProps> = ({t, frame}) => {
           <rect x={70} y={41} width={12} height={22} rx={3} fill={K.goldHi} />
           <circle cx={150} cy={35} r={32} fill="none" stroke={K.goldHi} strokeWidth={12} />
         </svg>
-        <div style={{position: 'absolute', left: cx - 40, top: 70, ...rise(doorIn)}}>
+        <div style={{position: 'absolute', left: cx - 40, top: 54, ...rise(doorIn)}}>
           <LockIcon size={80} open={1 - bolt} />
         </div>
       </div>
@@ -375,8 +388,10 @@ const Tablet: React.FC<{k: number; children?: React.ReactNode}> = ({k, children}
         borderRadius: 26,
         overflow: 'hidden',
         background: 'linear-gradient(180deg, #13244D 0%, #0A1430 100%)',
-        display: 'grid',
-        gridTemplateColumns: 'repeat(5, 1fr)',
+        display: 'flex',
+        flexWrap: 'wrap',
+        alignContent: 'center',
+        justifyContent: 'center',
         gap: 26,
         padding: 40,
         boxSizing: 'border-box',
@@ -400,7 +415,8 @@ export const S05: React.FC<SceneProps> = ({t, frame}) => {
           <div
             key={i}
             style={{
-              aspectRatio: '1',
+              width: 96,
+              height: 96,
               borderRadius: 22,
               background: ['#5E7CC9', K.gold, K.blue, '#7FA7E8', '#2C4A8C'][i % 5],
               opacity: 0.8 * clamp01(tab * 2 - i * 0.08),
@@ -578,10 +594,10 @@ export const S07: React.FC<SceneProps> = ({t, frame}) => {
       })}
       <Lines
         t={t}
-        at={[p.title, p.title + 0.35]}
-        lines={['You do not need to be', <>an <Gold key="g">IT expert.</Gold></>]}
-        size={92}
-        style={{left: TX, top: 360}}
+        at={[p.title, p.title + 0.3, p.title + 0.6]}
+        lines={['You do not', 'need to be', <>an <Gold key="g">IT expert.</Gold></>]}
+        size={96}
+        style={{left: TX, top: 300}}
       />
     </AbsoluteFill>
   );

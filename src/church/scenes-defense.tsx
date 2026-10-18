@@ -118,16 +118,16 @@ export const S08: React.FC<SceneProps> = ({t, frame}) => {
       <div
         style={{
           position: 'absolute',
-          left: 700,
+          left: 800,
           top: 420,
           display: 'flex',
-          gap: 12,
+          gap: 14,
           opacity: clamp01(stop * 2),
           transform: `scale(${stop})`,
         }}
       >
-        <div style={{width: 18, height: 64, borderRadius: 6, background: K.gold}} />
-        <div style={{width: 18, height: 64, borderRadius: 6, background: K.gold}} />
+        <div style={{width: 24, height: 84, borderRadius: 7, background: K.gold}} />
+        <div style={{width: 24, height: 84, borderRadius: 7, background: K.gold}} />
       </div>
       <Heading n={1} t={t} frame={frame} badge={p.badge} title={p.title} />
     </AbsoluteFill>
